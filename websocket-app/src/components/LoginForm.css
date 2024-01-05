@@ -1,0 +1,17 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.background-image {
+    background-image: url("./abstract-uv-ultraviolet-light-composition.jpg");
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-container {
+    min-height: 99.4vh; /* Adjust the value to fit your design */
+}
