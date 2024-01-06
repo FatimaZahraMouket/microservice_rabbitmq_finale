@@ -62,6 +62,9 @@ const EditClient = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/client-list">Client List</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/voiture-list">Voiture List</Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddClient = () => {
   const [client, setClient] = useState({ id: 99, nom: '', age: 0.0 });
+  const [clients, setClients] = useState([]);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -12,6 +13,7 @@ const AddClient = () => {
     setErrors({ ...errors, [e.target.name]: '' }); // Clear the error when the input changes
   };
 
+
   const validateForm = () => {
     const newErrors = {};
 
@@ -19,7 +21,6 @@ const AddClient = () => {
       newErrors.nom = 'Nom is required';
     }
 
-    // You can add more validation rules for the 'age' field if needed
 
     return newErrors;
   };
@@ -38,7 +39,8 @@ const AddClient = () => {
     .then(response => {
       console.log('Client added successfully');
       // Redirect to the client list after adding
-      
+      navigate('/client-list');
+
     })
     .catch(error => console.error('Error adding client', error));
 };

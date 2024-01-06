@@ -64,6 +64,10 @@ public class VoitureController {
         return voitureService.enregistrerVoiture(voiture);
     }
 
+    @DeleteMapping("/voitures/{id}")
+    public void deleteUneVoiture(@PathVariable Long id){
+        voitureRepository.deleteById(id);
+    }
 
 
 }

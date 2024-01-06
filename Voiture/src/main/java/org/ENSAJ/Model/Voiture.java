@@ -16,7 +16,7 @@ public class Voiture {
     private String matricule;
     private String marque;
     private String model;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_client")
     private Client client;
 

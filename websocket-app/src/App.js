@@ -6,6 +6,9 @@ import HomeComponent from './components/HomeComponent';
 import AddClient from './components/AddClient';
 import EditClient from './components/EditClient';
 import ClientList from './components/ClientList';
+import VoitureList from './components/VoitureList';
+import Addvoiture from './components/AddVoiture';
+
 const App = () => {
     const [authenticated, setAuthenticated] = useState(false);
 
@@ -17,7 +20,7 @@ const App = () => {
 
     return (
         <Router>
-        
+
             <Routes>
                 <Route
                     path="/"
@@ -31,8 +34,11 @@ const App = () => {
                 />
                 <Route path="/home" element={<HomeComponent />} />
                 <Route path="/add-client" element={<AddClient />} />
+                <Route path="/add-voiture" element={<Addvoiture />} />
+
                 <Route path="/edit-client/:id" element={<EditClient />} />
                 <Route path="/client-list" element={<ClientList />} />
+                <Route path="/voiture-list" element={<VoitureList />} />
             </Routes>
         </Router>
     );

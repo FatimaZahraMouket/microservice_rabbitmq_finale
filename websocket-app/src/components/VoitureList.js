@@ -7,8 +7,9 @@ import { Modal,Input, ModalHeader, ModalBody } from 'reactstrap';
 import AddClient from './AddClient';
 import { useNavigate } from 'react-router-dom';
 
-const ClientList = () => {
+const VoitureList = () => {
   const [clients, setClients] = useState([]);
+  const [voitures, setVoitures] = useState([]);
   const [clientVoitures, setClientVoitures] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,27 +17,27 @@ const ClientList = () => {
   const pagesVisited = pageNumber * clientsPerPage;
   const navigate = useNavigate();
   useEffect(() => {
-    axios.get('http://localhost:8088/clients')
-      .then(response => setClients(response.data))
+    axios.get('http://localhost:8888/SERVICE-VOITURE/voitures')
+      .then(response => setVoitures(response.data))
       .catch(error => console.error('Error fetching clients', error));
-    axios.get(`http://localhost:8089/voitures`)
+    axios.get(`http://localhost:8089/clients`)
       .then(response => {
         console.log("OK");
       })
       .catch(error => console.error('Error fetching clients', error));
   }, []);
 
-  const displayClients = clients
-    .filter(client => client.nom.toLowerCase().includes(searchTerm.toLowerCase()))
+  const displayClients=voitures
+    .filter(voiture => voiture.matricule.toLowerCase().includes(searchTerm.toLowerCase()))
     .slice(pagesVisited, pagesVisited + clientsPerPage)
-    .map(client => (
-      <tr key={client.id}>
-        <th scope="row">{client.id}</th>
-        <td>{client.nom}</td>
-        <td>{client.age}</td>
-        <td><Link to={`/edit-client/${client.id}`} className="btn btn-warning">Edit</Link></td>
-        <td><button className="btn btn-danger" onClick={() => handleDeleteClient(client.id)}>Delete</button></td>
-        <td><button className="btn btn-info" onClick={() => handleGetVoiture(client.id)}>Get Voitures</button></td>
+    .map(voiture => (
+      <tr key={voiture.id}>
+        <th scope="row">{voiture.id}</th>
+        <td>{voiture.marque}</td>
+        <td>{voiture.matricule}</td>
+        <td>{voiture.model}</td>
+        <td><Link to={`/edit-client/${voiture.id}`} className="btn btn-warning">Edit</Link></td>
+        <td><button className="btn btn-danger" onClick={() => handleDeleteVoiture(voiture.id)}> Delete</button></td>
       </tr>
     ));
 
@@ -46,12 +47,12 @@ const ClientList = () => {
     setPageNumber(selected);
   };
 
-  const handleDeleteClient = (id) => {
-    axios.delete(`http://localhost:8088/clients/${id}`)
+  const handleDeleteVoiture = (id) => {
+    axios.delete(`http://localhost:8089/voitures/${id}`)
       .then(response => {
         console.log('Client deleted successfully', response);
         // Refresh the client list after deletion
-        setClients(clients.filter(client => client.id !== id));
+        setVoitures(voitures.filter(voiture => voiture.id !== id));
       })
       .catch(error => console.error('Error deleting client', error));
   };
@@ -94,9 +95,11 @@ const ClientList = () => {
       .slice(modalPagesVisited, modalPagesVisited + modalItemsPerPage)
       .map(voiture => (
         <tr key={voiture.id}>
+          <td>{voiture.id}</td>
           <td>{voiture.marque}</td>
           <td>{voiture.matricule}</td>
           <td>{voiture.model}</td>
+
         </tr>
       ));
 
@@ -155,7 +158,7 @@ const ClientList = () => {
   return (
     <div>
     <Modal isOpen={showAddModal} toggle={handleCloseAddModal} className="lg">
-        <ModalHeader toggle={handleCloseAddModal}>Add Client</ModalHeader>
+        <ModalHeader toggle={handleCloseAddModal}>Add Voiture</ModalHeader>
         <ModalBody>
         <AddClient />
         </ModalBody>
@@ -190,7 +193,7 @@ const ClientList = () => {
                 <Link className="nav-link" to="/client-list">Client List</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/voiture-list"> Voiture List</Link>
+                <Link className="nav-link" to="/voiture-list">Voiture List</Link>
               </li>
             </ul>
           </div>
@@ -198,7 +201,7 @@ const ClientList = () => {
       </nav>
       <div className="container mt-5">
       <div className="d-flex justify-content-between mb-3">
-        <h2>Client List</h2>
+        <h2>Voiture List</h2>
       </div>
 
       <div className="input-group mb-3">
@@ -216,11 +219,11 @@ const ClientList = () => {
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Age</th>
+            <th scope="col">Marque</th>
+            <th scope="col">Matricule</th>
+            <th scope="col">Model</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
-            <th scope="col">Voitures</th>
           </tr>
         </thead>
         <tbody>{displayClients}</tbody>
@@ -245,4 +248,4 @@ const ClientList = () => {
   );
 };
 
-export default ClientList;
+export default VoitureList;
