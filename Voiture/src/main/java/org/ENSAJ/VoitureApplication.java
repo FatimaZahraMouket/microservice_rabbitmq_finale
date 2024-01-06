@@ -39,10 +39,6 @@ public class VoitureApplication {
             Client c2 = clientService.clientById(Long.parseLong("2"));
             Client c3 = clientService.clientById(Long.parseLong("3"));
             Client c4 = clientService.clientById(Long.parseLong("4"));
-            Client c5 = clientService.clientById(Long.parseLong("5"));
-            Client c6 = clientService.clientById(Long.parseLong("6"));
-            Client c7 = clientService.clientById(Long.parseLong("7"));
-
 
         };
 

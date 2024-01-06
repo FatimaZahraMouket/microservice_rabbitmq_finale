@@ -23,13 +23,11 @@ public class ClientApplication {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... args) throws Exception {
-				clientRepository.save(new Client(Long.parseLong("1"), "Nidabdellah ", Float.parseFloat("24")));
-				clientRepository.save(new Client(Long.parseLong("2"), "Barbache", Float.parseFloat("32")));
-				clientRepository.save(new Client(Long.parseLong("3"), "Idlhssan", Float.parseFloat("30")));
-				clientRepository.save(new Client(Long.parseLong("4"), "Aboaabd", Float.parseFloat("25")));
-				clientRepository.save(new Client(Long.parseLong("5"), "Najari", Float.parseFloat("28")));
-				clientRepository.save(new Client(Long.parseLong("6"), "Jiblan", Float.parseFloat("23")));
-				clientRepository.save(new Client(Long.parseLong("7"), "Aboali", Float.parseFloat("27")));
+				clientRepository.save(new Client(Long.parseLong("1"), "Mouket ", Float.parseFloat("24")));
+				clientRepository.save(new Client(Long.parseLong("5"), "Fatima zahra", Float.parseFloat("32")));
+				clientRepository.save(new Client(Long.parseLong("3"), "ISmail", Float.parseFloat("30")));
+				clientRepository.save(new Client(Long.parseLong("4"), "Salma", Float.parseFloat("25")));
+
 
 			}
 		};
